@@ -1,0 +1,12 @@
+{
+  "name": "Fortnite_proj",
+  "displayName": "Fortnite_proj",
+  "expo": {
+    "name": "Fortnite_proj",
+    "slug": "Fortnite_proj",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
