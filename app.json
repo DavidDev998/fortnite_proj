@@ -3,6 +3,16 @@
   "displayName": "Fortnite_proj",
   "expo": {
     "name": "Fortnite_proj",
+    "android": {
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4279032512183056~6633882497" 
+      }
+    },
+    "ios": {
+      "config": {
+        "googleMobileAdsAppId": "ca-app-pub-4279032512183056~6633882497"
+      }
+    },
     "slug": "Fortnite_proj",
     "version": "1.0.0",
     "assetBundlePatterns": [
