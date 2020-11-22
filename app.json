@@ -1,19 +1,20 @@
 {
-  "name": "Fortnite_proj",
+  "name": "Loja do Fortnite",
   "displayName": "Fortnite_proj",
   "expo": {
-    "name": "Fortnite_proj",
+    "name": "Loja do Fortnite",
     "android": {
       "config": {
-        "googleMobileAdsAppId": "ca-app-pub-4279032512183056~6633882497" 
-      }
+        "googleMobileAdsAppId": "ca-app-pub-4279032512183056~5442628284"
+      },
+      "package": "com.dvjonson.loja_do_fortnite"
     },
     "ios": {
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-4279032512183056~6633882497"
       }
     },
-    "slug": "Fortnite_proj",
+    "slug": "loja_do_fortnite",
     "version": "1.0.0",
     "assetBundlePatterns": [
       "**/*"

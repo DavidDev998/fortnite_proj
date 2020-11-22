@@ -1,11 +1,13 @@
 import * as React from 'react';
 import {AdMobBanner,AdMobInterstitial,PublisherBanner,AdMobRewarded,setTestDeviceIDAsync,} from 'expo-ads-admob';
-import { Text, View, StyleSheet, ImageBackground, Image} from 'react-native';
+import { Text, View, StyleSheet, ImageBackground, Image, StatusBar} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
+import { useFonts } from "@use-expo/font";
+import { AppLoading } from "expo";
 import Daily from './components/daily'
 import Account from './components/account'
+import Cosmetics from './components/cosmetics'
 
 setTestDeviceId = async () => {
   await setTestDeviceIDAsync('EMULATOR');
@@ -39,16 +41,23 @@ const Tab = createMaterialBottomTabNavigator();
 
 
 export default function App() {
+  const [isLoaded] = useFonts({
+    "fort": require("../assets/fonts/Burbank-Big-Condensed-Black.ttf"),
+  });
+  if (!isLoaded) {
+    return <AppLoading />;
+  } else {
   return (
     <View style={styles.view}>
       <ImageBackground source={require('../assets/background.png')} style={styles.image}>
         <NavigationContainer >
           <Tab.Navigator style={styles.navigator} 
           initialRouteName='Loja'
-          tabBarPosition='bottom'
-          
+          activeColor='white'
+          barStyle={{backgroundColor:'#f3af19'}}
+          labeled={false}
           screenOptions={({ route }) => ({
-            tabBarIcon: () => {
+            tabBarIcon: ({focused, color, size}) => {
 
               if (route.name === 'Loja') {
                 return <Image style={styles.image_button} source={require('../assets/cart.png')}/>;
@@ -57,44 +66,38 @@ export default function App() {
               }else if( route.name === 'Cosméticos') {
                 return <Image style={styles.image_button} source={require('../assets/chest.png')}/>;
               }
-
-              // You can return any component that you like here!
-              
             },
-          })}
-          tabBarOptions={{
-            showIcon:true,
-            activeTintColor: '#0865bc',
-            inactiveTintColor: 'gray',
-            style:styles.tabBar,
-            showLabel:false,
-
-          }}>
+            
+          })}>
             <Tab.Screen name="Loja" component={Daily}/>
             <Tab.Screen name="Conta" component={Account} />
-            <Tab.Screen name="Cosméticos" component={Account} />
+            <Tab.Screen name="Cosméticos" component={Cosmetics} />
           </Tab.Navigator>
         </NavigationContainer>
       </ImageBackground>
       <AdMobBanner
         bannerSize="fullBanner"
-        adUnitID="ca-app-pub-3940256099942544/6300978111" // Test ID, Replace with your-admob-unit-id
-        servePersonalizedAds/>
+        adUnitID="ca-app-pub-4279032512183056/4812072897"
+        servePersonalizedAds={false}
+        onAdViewDidReceiveAd={() => console.log('success')}
+        onDidFailToReceiveAdWithError={(e) => console.log(e)}
+      />
     </View>
-  );
+  )
+  }
 }
 
 const styles = StyleSheet.create({
   view:{
     flex:1,
-    justifyContent:'center'
+    justifyContent:'center',
+    marginTop: StatusBar.currentHeight || 0,
   },
   image:{
     flex: 1,
     justifyContent:'center'
   }, 
   navigator:{
-    marginTop:50,
     justifyContent:'center'
   },
   tabBar:{
@@ -102,7 +105,6 @@ const styles = StyleSheet.create({
     backgroundColor:'#1C5494',
     height:60,
     borderRadius:10,
-
   }, 
   image_button:{
     height:30,
