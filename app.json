@@ -4,10 +4,12 @@
   "expo": {
     "name": "Loja do Fortnite",
     "android": {
+      "versionCode":4,
       "config": {
         "googleMobileAdsAppId": "ca-app-pub-4279032512183056~5442628284"
       },
-      "package": "com.dvjonson.loja_do_fortnite"
+      "package": "com.dvjonson.loja_do_fortnite",
+      "permissions":[]
     },
     "ios": {
       "config": {
@@ -15,7 +17,7 @@
       }
     },
     "slug": "loja_do_fortnite",
-    "version": "1.0.0",
+    "version": "4.0.0",
     "assetBundlePatterns": [
       "**/*"
     ]
